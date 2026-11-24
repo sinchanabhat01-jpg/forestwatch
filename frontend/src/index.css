@@ -1,0 +1,22 @@
+@import "leaflet/dist/leaflet.css";
+@import "leaflet-draw/dist/leaflet.draw.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+body { @apply bg-char-900 text-white font-sans antialiased; background-image: radial-gradient(1200px 600px at 80% -10%, rgba(27,94,59,.35), transparent 60%); }
+h1, h2, h3 { @apply font-display; }
+
+@layer components {
+  .glass { @apply rounded-xl border border-white/10 bg-white/[0.045] backdrop-blur-md; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-canopy-950 transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon disabled:cursor-not-allowed disabled:opacity-40; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-3 py-2 text-sm text-white/90 transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neon disabled:opacity-40; }
+  .input { @apply w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-neon focus:outline-none; }
+  .label { @apply mb-1 block text-xs text-white/60; }
+  .th { @apply px-3 py-2 text-left text-xs font-medium text-white/50; }
+  .td { @apply px-3 py-2 text-sm; }
+}
+.leaflet-container { background: #0a1a10; font-family: inherit; }
+.leaflet-draw-toolbar a { background-color: #fff; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

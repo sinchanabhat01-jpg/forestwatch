@@ -1,0 +1,20 @@
+ForestWatch usability update
+============================
+
+Changes in this package:
+- Fixed the Windows launcher backend interpreter path. It now launches the virtual environment it actually creates at backend/.venv.
+- Added Python and Node version checks.
+- Improved dependency installation checks so an interrupted/partial frontend install is detected.
+- Added a readiness wait before opening the browser.
+- Reworked the quick-start guide around the local SQLite + demo-first workflow.
+
+Verification performed:
+- Python backend source files pass compileall.
+- Backend analysis tests: 4 passed.
+- Full frontend build and live server startup could not be verified in this environment because package downloads are blocked by network/DNS restrictions. The Windows launcher will install dependencies on the user's machine when internet is available.
+
+First use:
+1. Extract the ZIP.
+2. Install Python 3.11+ and Node.js 18+.
+3. Run START_FORESTWATCH.bat.
+4. Register an account and try Demo mode first.

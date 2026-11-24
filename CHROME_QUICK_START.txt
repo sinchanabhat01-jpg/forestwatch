@@ -1,0 +1,48 @@
+# ForestWatch AI — Windows / Chrome quick start
+
+## First run
+
+1. Install **Python 3.11 or newer** and **Node.js 18 or newer**.
+   - Python: https://www.python.org/downloads/ (select **Add Python to PATH**)
+   - Node.js: https://nodejs.org/
+2. Extract the complete ZIP to a normal folder, for example `C:\ForestWatch`. Do not run it from inside the ZIP.
+3. Double-click `START_FORESTWATCH.bat`.
+4. Wait while it creates the Python environment, installs packages, and starts both servers. The first run needs an internet connection and can take several minutes.
+5. Register a new account in the browser. Keep both black server windows open while using the app.
+
+Open manually if needed:
+- Website: http://localhost:5173
+- Backend health: http://localhost:8000/api/health
+- API documentation: http://localhost:8000/docs
+
+## Try the app without API credentials
+
+You can register, open **Deforestation detection**, draw/select an area and run the clearly labelled **Demo** analysis. Demo results use synthetic imagery and are not evidence of real forest loss. This is the best way to test the interface before configuring satellite access.
+
+## Enable real satellite imagery
+
+Real Sentinel-2 analysis requires a free Copernicus Data Space OAuth client:
+
+1. Register at https://dataspace.copernicus.eu/
+2. Create an OAuth client in the Copernicus Data Space dashboard.
+3. Open `backend/.env` in Notepad and set:
+   `SH_CLIENT_ID=your_client_id`
+   `SH_CLIENT_SECRET=your_client_secret`
+4. Save the file and close/reopen the backend server window (or restart the launcher).
+
+Optional Global Forest Watch API key:
+`GFW_API_KEY=your_key`
+
+NASA GIBS map tiles do not require an API key. The local Chrome setup uses SQLite automatically; MySQL is not required.
+
+## Troubleshooting
+
+- **A server window closes or reports an error:** keep the error text; it identifies which dependency or configuration failed.
+- **Website says it cannot reach the server:** check that the backend window is still running and visit `/api/health`.
+- **Blank page / Vite not found:** close both server windows and run `START_FORESTWATCH.bat` again. The launcher checks for Vite itself, not just the `node_modules` folder.
+- **Port already in use:** close any older ForestWatch server windows, or stop the process already using ports 8000 / 5173.
+- **Chrome does not open:** visit http://localhost:5173 manually.
+
+## Important limitations
+
+This is a local web application, not a standalone HTML file. The backend must remain running. Satellite observations are periodic, not live video. Detection is a rule-based estimate; validate results against high-resolution imagery or field observations before making decisions. Do not share `backend/.env` because it may contain private API credentials.
